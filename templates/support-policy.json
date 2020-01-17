@@ -1,0 +1,68 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "S3:*",
+      "Resource": "arn:aws:s3:::test/*",
+      "Condition": {}
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetBucketLocation",
+        "s3:ListAllMyBuckets"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::test"
+      ]
+    },
+    {
+      "Sid": "AllowGet",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::test/*"
+      ]
+    },
+    {
+      "Sid": "AllowPut",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::test/build-artifacts/*",
+        "arn:aws:s3:::test/eds-config/*"
+      ]
+    },
+    {
+      "Sid": "AllowCreateDBInstanceOnly",
+      "Effect": "Allow",
+      "Action": [
+        "rds:CreateDBInstance"
+      ],
+      "Resource": [
+        "arn:aws:rds:*:12345:db:test*",
+        "arn:aws:rds:*:12345:og:default*",
+        "arn:aws:rds:*:12345:pg:default*",
+        "arn:aws:rds:*:12345:subgrp:default"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "rds:DatabaseEngine": "mysql",
+          "rds:DatabaseClass": "db.t2.micro"
+        }
+      }
+    }
+  ]
+}
