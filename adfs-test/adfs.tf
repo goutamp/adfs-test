@@ -1,6 +1,6 @@
 module "aws-adfs" {
 #  source           =  "./${file("../infra-code-module/iam.tf")}"
-  source            =  "/home/ec2-user/infracode/infra-code-module/"
+  source            =  "/opt/adfs-test/adfs-custom/"
   app_name          =  "${var.app_name}"
   app_parent        =  "${var.app_parent}"
   target_region     =  "${var.target_region}"

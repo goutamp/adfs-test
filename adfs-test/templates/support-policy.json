@@ -4,7 +4,7 @@
     {
       "Effect": "Allow",
       "Action": "S3:*",
-      "Resource": "arn:aws:s3:::test/*",
+      "Resource": "arn:aws:s3:::test123/*",
       "Condition": {}
     },
     {
@@ -21,7 +21,7 @@
         "s3:ListBucket"
       ],
       "Resource": [
-        "arn:aws:s3:::test"
+        "arn:aws:s3:::test123"
       ]
     },
     {
@@ -31,7 +31,7 @@
         "s3:GetObject"
       ],
       "Resource": [
-        "arn:aws:s3:::test/*"
+        "arn:aws:s3:::test12/*"
       ]
     },
     {
@@ -52,7 +52,7 @@
         "rds:CreateDBInstance"
       ],
       "Resource": [
-        "arn:aws:rds:*:12345:db:test*",
+        "arn:aws:rds:*:12345:db:test1*",
         "arn:aws:rds:*:12345:og:default*",
         "arn:aws:rds:*:12345:pg:default*",
         "arn:aws:rds:*:12345:subgrp:default"
