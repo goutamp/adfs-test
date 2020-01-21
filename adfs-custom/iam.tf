@@ -16,6 +16,15 @@ module "download" {
 }
 */
 
+
+
+resource "aws_iam_saml_provider" "identity_provider" {
+  name                   = "idp"
+  saml_metadata_document = file("/opt/adfs-test/adfs-custom/federationmetadata.xml")
+
+}
+
+
 resource "aws_iam_role" "support_role" {
   name               = "ADFS-${var.aws_account_name}-ApplicationAccess"
   assume_role_policy = "${data.template_file.saml_policy.rendered}"
