@@ -12,6 +12,7 @@
      app_parent        = "${var.app_parent}"
      target_region     =  "${var.target_region}"
      aws_account_name  =  "${var.aws_account_name}"
+     provider_name     =  "${var.provider_name}"
 }
   ```
  
@@ -22,10 +23,12 @@
   - `app_parent` = Need to put the app parent name 
   - `target_region` = need to put the target region where policy will be setup 
   - `aws_account_name` = need to put the aws account where policy will be setup.
-
+  - `provider_name` = need to put the idp provider nmae e.g idp or test-idp.
 
 
 # NB 
     We need to fixed the path value of the template file for the source value
     when this will be run in the Circle CI, That time we need to check the code
-    base also.
+    base also. 
+
+   We need to put the values of the above variables when we will run this as a module
