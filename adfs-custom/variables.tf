@@ -6,7 +6,7 @@ variable "aws_account_name" {
 variable "target_region" {
   description = "AWS Region to use whilst provisioning this infrastructure"
   type        =  string
-  default     =  "us-east-2"
+  default     =  "us-east-1"
 }
 variable "app_parent" {
   description = "Application parent/category"
@@ -18,3 +18,7 @@ variable "app_name" {
   type        =  string
 }
 
+variable "provider_name" {
+  description = "provide the provider name"
+  type        = string
+}

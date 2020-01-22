@@ -5,8 +5,8 @@
       "Effect": "Allow",
       "Principal": {
         "Federated": [
-          "arn:aws:iam::${account_id}:saml-provider/idp",
-          "arn:aws:iam::${account_id}:saml-provider/idp-test1"
+          "arn:aws:iam::${account_id}:saml-provider/${provider_name}",
+          "arn:aws:iam::${account_id}:saml-provider/${provider_name}-test1"
         ]
       },
       "Action": "sts:AssumeRoleWithSAML",
