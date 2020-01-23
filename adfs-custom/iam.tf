@@ -1,26 +1,26 @@
 
 locals {
-   app_env = "argosfx"
-   app_costcode = "IT-ARGOS"
+  app_env      = "argosfx"
+  app_costcode = "IT-ARGOS"
 
   common_tags = {
     Family      = "${var.app_parent}"
     Application = "${var.app_name}"
     Environment = "${local.app_env}"
     CostCode    = "${local.app_costcode}"
+  }
 }
-}
-/*
+
 module "download" {
-  source = "github.com/goutamp/infra-code-template/templates"
+  source = "git::github.com/travelex/it-infra-modules.git//terraform_modules/iam-template?ref=feature/iam-role-template"
 }
-*/
+
 
 
 
 resource "aws_iam_role" "support_role" {
-  name               = "ADFS-${var.aws_account_name}-ApplicationAccess"
-  assume_role_policy = "${data.template_file.saml_policy.rendered}"
+  name                 = "ADFS-${var.aws_account_name}-ApplicationAccess"
+  assume_role_policy   = "${data.template_file.saml_policy.rendered}"
   max_session_duration = "3600"
 
   tags = "${merge(
@@ -32,12 +32,12 @@ resource "aws_iam_role" "support_role" {
 }
 
 data "template_file" "saml_policy" {
-  template = "${file("/opt/adfs-test/adfs-test/templates/assume-saml.json")}"
+  template = "${file("${path.module}/templates/assume-saml.json")}"
 
   vars = {
-    account_id          = "${data.aws_caller_identity.this.account_id}"
-    region              = "${var.target_region}"
-    provider_name       = "${var.provider_name}"
+    account_id    = "${data.aws_caller_identity.this.account_id}"
+    region        = "${var.target_region}"
+    provider_name = "${var.provider_name}"
   }
 }
 
@@ -51,11 +51,11 @@ resource "aws_iam_role_policy" "support_policy" {
 }
 
 data "template_file" "support_policy" {
-  template = "${file("/opt/adfs-test/adfs-test/templates/support-policy.json")}"
+  template = "${file("${path.module}/templates/support-policy.json")}"
 
   vars = {
-    account_id          = "${data.aws_caller_identity.this.account_id}"
-    region              = "${var.target_region}"
+    account_id = "${data.aws_caller_identity.this.account_id}"
+    region     = "${var.target_region}"
   }
 }
 
