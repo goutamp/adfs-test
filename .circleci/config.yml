@@ -30,7 +30,7 @@ jobs:
           name: Calculate Terraform workspace from current branch
           command: |
             BRANCH_STEM=${CIRCLE_BRANCH/\/*//}
-            ENVIRONMENT=$(echo -e 'feature-dms fmdev\ndevelop testing\nrelease/ uat\nplay-env/ play\npreprod/ preprod\nmaster production' | awk -vX=$BRANCH_STEM '$1 == X { print $2 }')
+            ENVIRONMENT=$(echo -e 'feature-dms fmdev\nfeature/adfs-test testing\nrelease/ uat\nplay-env/ play\npreprod/ preprod\nmaster production' | awk -vX=$BRANCH_STEM '$1 == X { print $2 }')
             echo "ENVIRONMENT=${ENVIRONMENT:-feature}" > /workspace/.env
             echo "Terraform environment is now ${ENVIRONMENT}"
       - persist_to_workspace:
