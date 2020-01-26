@@ -27,7 +27,7 @@ resource "aws_iam_role" "support_role" {
 }
 
 data "template_file" "saml_policy" {
-  template = "${file("${template_file1.{path.module}}/templates/assume-saml.json")}"
+  template = "${file("${module.template_file1.path}/templates/assume-saml.json")}"
 
   vars = {
     account_id    = "${data.aws_caller_identity.this.account_id}"
