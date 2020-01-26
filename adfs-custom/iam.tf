@@ -11,6 +11,9 @@ locals {
   }
 }
 
+module "download" {
+  source          = "git::github.com/goutamp/circle-ci-test.git//adfs-test/templates"
+}
 
 
 resource "aws_iam_role" "support_role" {
@@ -27,7 +30,7 @@ resource "aws_iam_role" "support_role" {
 }
 
 data "template_file" "saml_policy" {
-  template = "${file("${module.template_file1.path}/templates/assume-saml.json")}"
+  template = "${file("${module.download.path}/templates/assume-saml.json")}"
 
   vars = {
     account_id    = "${data.aws_caller_identity.this.account_id}"
