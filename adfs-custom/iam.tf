@@ -11,11 +11,6 @@ locals {
   }
 }
 
-module "download" {
-  source = "git::github.com/goutamp/circle-ci-test.git//adfs-test/templates"
-}
-
-
 
 
 resource "aws_iam_role" "support_role" {
@@ -32,7 +27,7 @@ resource "aws_iam_role" "support_role" {
 }
 
 data "template_file" "saml_policy" {
-  template = "${file(".terraform/modules/aws-adfs.download/adfs-test/templates/assume-saml.json")}"
+  template = "${file("{path.module}/templates/assume-saml.json")}"
 
   vars = {
     account_id    = "${data.aws_caller_identity.this.account_id}"
