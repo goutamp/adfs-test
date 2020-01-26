@@ -12,7 +12,7 @@ locals {
 }
 
 module "download" {
-  source = "git:://github.com/goutamp/circle-ci-test.git//adfs-test/templates"
+  source = "git::github.com/goutamp/circle-ci-test.git//adfs-test/templates"
 }
 
 
