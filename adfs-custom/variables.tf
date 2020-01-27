@@ -22,7 +22,4 @@ variable "provider_name" {
   description = "provide the provider name"
   type        = string
 }
-variable "module_name" {
-  description = "Module Name"
-  type        = string
-}
+
