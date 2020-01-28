@@ -23,8 +23,4 @@ variable "provider_name" {
   type        = string
 }
 
-variable "module_name" {
-  description = "provide the module name"
-  type        = string
-  default     = "aws-adfs"
-}  
+  
